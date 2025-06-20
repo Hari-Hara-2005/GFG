@@ -2,19 +2,23 @@ class Solution {
   public:
 
     // Function to rotate an array by d elements in counter-clockwise direction.
+    void rev(vector<int>& arr,int i,int j)
+    {
+        while(i<=j)
+        {
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            i++;
+            j--;
+        }
+    }
     void rotateArr(vector<int>& arr, int d) {
         // code here
         int n=arr.size();
         d=d%n;
-        vector<int>ans;
-        for(int i=d;i<n;i++)
-        {
-            ans.push_back(arr[i]);
-        }
-        for(int i=0;i<d;i++)
-        {
-            ans.push_back(arr[i]);
-        }
-        arr=ans;
+       rev(arr,0,d-1);
+       rev(arr,d,n-1);
+       rev(arr,0,n-1);
     }
 };
