@@ -2,17 +2,17 @@ class Solution {
   public:
     int findUnion(vector<int>& a, vector<int>& b) {
         // code here
-       unordered_map<int,int>mp;
+        set<int>st;
        int n=a.size();
        int m=b.size();
        for(int i=0;i<n;i++)
        {
-           mp[a[i]]++;
+          st.insert(a[i]);
        }
         for(int i=0;i<m;i++)
        {
-           mp[b[i]]++;
+          st.insert(b[i]);
        }
-       return (mp.size());
+       return (st.size());
     }
 };
