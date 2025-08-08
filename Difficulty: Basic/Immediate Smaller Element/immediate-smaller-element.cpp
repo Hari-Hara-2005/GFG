@@ -1,0 +1,21 @@
+// User function template for C++
+class Solution {
+  public:
+    void immediateSmaller(vector<int>& arr) {
+        //  code here
+        int n = arr.size();
+        vector<int>ans;
+        for(int i=0;i<n-1;i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                ans.push_back(arr[i+1]);
+            }
+            else{
+                ans.push_back(-1);
+            }
+        }
+        ans.push_back(-1);
+        arr =ans;
+    }
+};
