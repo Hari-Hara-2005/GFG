@@ -1,18 +1,29 @@
 class Solution {
   public:
-    int findUnion(vector<int>& a, vector<int>& b) {
+    vector<int> findUnion(vector<int>& a, vector<int>& b) {
         // code here
+        int n = a.size();
+        int m = b.size();
+        int i=0,j=0;
         set<int>st;
-       int n=a.size();
-       int m=b.size();
-       for(int i=0;i<n;i++)
-       {
-          st.insert(a[i]);
-       }
-        for(int i=0;i<m;i++)
-       {
-          st.insert(b[i]);
-       }
-       return (st.size());
+        while(i<n && j<m)
+        {
+            st.insert(a[i++]);
+            st.insert(b[j++]);
+        }
+        while(i<n)
+        {
+            st.insert(a[i++]);
+        }
+        while(j<m)
+        {
+            st.insert(b[j++]);
+        }
+        vector<int>ans;
+        for(auto it:st)
+        {
+            ans.push_back(it);
+        }
+        return ans;
     }
 };
