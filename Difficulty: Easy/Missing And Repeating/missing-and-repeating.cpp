@@ -2,27 +2,19 @@ class Solution {
   public:
     vector<int> findTwoElement(vector<int>& arr) {
         // code here
-        int n=arr.size();
-        map<int,int>mp;
-        vector<int>ans;
-        for(int i=0;i<n;i++)
-        {
-        mp[arr[i]]++;
+         int n = arr.size();
+        vector<int> count(n + 1, 0);
+        int repeating = -1, missing = -1;
+        
+        for (int i = 0; i < n; i++) {
+            count[arr[i]]++;
         }
-        int missing=-1,repating=0;
-        for(int i=1;i<=n;i++)
-        {
-            if(mp[i]==2)
-            {
-                repating=i;
-            }
-            if(mp[i]==0)
-            {
-                missing=i;
-            }
+
+        for (int i = 1; i <= n; i++) {
+            if (count[i] == 0) missing = i;
+            else if (count[i] == 2) repeating = i;
         }
-        ans.push_back(repating);
-        ans.push_back(missing);
-        return ans;
+
+        return {repeating, missing};
     }
 };
