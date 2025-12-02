@@ -17,19 +17,15 @@ class Solution {
     Node *reverse(Node *head) {
         // code here
         Node* curr = head;
-        stack<int>st;
+        Node* newHead = nullptr;
         while(curr)
         {
-            st.push(curr->data);
-            curr = curr->next;
+            Node* temp = curr->next;
+            curr->next = curr->prev;
+            curr->prev = temp;
+            newHead = curr;
+            curr = temp;
         }
-        curr = head;
-        while(curr)
-        {
-            curr->data = st.top();
-            st.pop();
-            curr = curr->next;
-        }
-        return head;
+        return newHead;
     }
 };
