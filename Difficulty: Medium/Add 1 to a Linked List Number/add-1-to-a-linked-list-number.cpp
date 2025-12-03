@@ -18,49 +18,33 @@ class Solution {
     Node* reverse(Node* head)
     {
         Node* curr = head;
-        stack<int>st;
+        Node* prev = nullptr;
         while(curr)
         {
-            st.push(curr->data);
-            curr = curr->next;
+            Node* temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
         }
-        curr = head;
-        while(curr)
-        {
-            curr->data = st.top();
-            st.pop();
-            curr = curr->next;
-        }
-        return head;
+        return prev;
     }
     Node* addOne(Node* head) {
-        // Your Code here
-        Node* curr = head;
-        curr = reverse(curr);
-        int carry =1;
-        int sum = 0;
+        Node* newHead = reverse(head);
+        Node* curr = newHead;
+        int carry=1;
         while(curr)
         {
-            sum = (curr->data + carry);
-            if(sum>=10)
+            int value = carry+curr->data;
+            curr->data = value%10;
+            carry = value/10;
+            if(carry && curr->next == nullptr)
             {
-                carry = 1;
-                curr->data = (sum%10);
-            }
-            else{
+                Node* temp = new Node(1);
+                curr->next = temp;
                 carry=0;
-                curr->data = sum;
             }
             curr = curr->next;
         }
-        curr = reverse(head);
-        if(carry == 1)
-        {
-            Node* newNode = new Node(carry);
-            head = newNode;
-            newNode->next = curr;
-        }
-        return head;
-        // return head of list after adding one
+        return reverse(newHead);
     }
 };
