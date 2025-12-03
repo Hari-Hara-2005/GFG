@@ -13,20 +13,30 @@ class Node {
 
 class Solution {
   public:
+    int lenght(Node* slow,Node* fast)
+    {
+        int cnt=1;
+        fast = fast->next;
+        while(slow != fast)
+        {
+            cnt++;
+            fast =fast->next;
+        }
+        return cnt;
+    }
     int lengthOfLoop(Node *head) {
         // code here
-        int cnt=1;
-        map<Node*,int>mp;
         Node* curr = head;
-        while(curr)
+        Node* slow = head;
+        Node* fast = head;
+        while(fast && fast->next != nullptr)
         {
-            if(mp.find(curr) != mp.end())
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast)
             {
-                return cnt - mp[curr];
+                return lenght(slow,fast);
             }
-            mp[curr] = cnt;
-            cnt++;
-            curr = curr->next;
         }
         return 0;
     }
