@@ -13,51 +13,22 @@ class Node {
 
 class Solution {
   public:
-    Node* reverse(Node* head)
-    {
-        Node* curr = head;
-        Node* prev = nullptr;
-        while(curr)
-        {
-            Node* temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
-    }
-    Node* findMid(Node* head)
-    {
-        Node* slow = head;
-        Node* fast = head;
-        while(fast && fast->next != nullptr)
-        {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        return slow;
-    }
     bool isPalindrome(Node *head) {
         //  code here
-        Node* mid = findMid(head);
-        Node* newHead = reverse(mid);
+        stack<int>st;
         Node* curr = head;
-        while(newHead)
+        while(curr)
         {
-            if(curr->data != newHead->data)
-            {
-                return false;
-            }
-            newHead = newHead->next;
+            st.push(curr->data);
+            curr = curr->next;
+        }
+        curr = head;
+        while(curr)
+        {
+            if(curr->data != st.top())return false;
+            st.pop();
             curr = curr->next;
         }
         return true;
     }
 };
-
-
-
-
-
-
-
