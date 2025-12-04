@@ -27,64 +27,52 @@ class Solution {
     }
     Node* addTwoLists(Node* head1, Node* head2) {
         // code here
-        Node* p = reverse(head1);
-        Node* q = reverse(head2);
-        Node* curr1 = p;
-        Node* curr2 = q;
         Node* newNode = new Node(-1);
-        Node* dummyNode = newNode;
-        int carry=0,value=0;
+        Node* dummyNode =newNode;
+        Node* newHead1 = reverse(head1);
+        Node* newHead2 = reverse(head2);
+        Node* curr1 = newHead1;
+        Node* curr2 = newHead2;
+        int carr = 0,val =0;
         while(curr1 && curr2)
         {
-            value = curr1->data + curr2->data + carry;
-            Node* temp = new Node(value % 10);
-            carry = value / 10;
+            val = curr1->data + curr2->data + carr;
+            Node* temp = new Node(val%10);
             dummyNode->next = temp;
-            dummyNode = temp;
+            dummyNode = temp; 
+            carr = val/10;
             curr1 = curr1->next;
             curr2 = curr2->next;
         }
         while(curr1)
         {
-            value = curr1->data + carry;
-            Node* temp = new Node(value % 10);
-            carry = value / 10;
+            val = curr1->data + carr;
+            Node* temp = new Node(val%10);
             dummyNode->next = temp;
-            dummyNode = temp;
+            dummyNode = temp; 
+            carr = val/10;
             curr1 = curr1->next;
         }
         while(curr2)
         {
-            value = curr2->data + carry;
-            Node* temp = new Node(value % 10);
-            carry = value / 10;
+            val = curr2->data + carr;
+            Node* temp = new Node(val%10);
             dummyNode->next = temp;
-            dummyNode = temp;
+            dummyNode = temp; 
+            carr = val/10;
             curr2 = curr2->next;
         }
-        if(carry)
+        if(carr)
         {
-            Node* temp = new Node(carry);
+            Node* temp = new Node(carr); 
             dummyNode->next = temp;
             dummyNode = temp;
         }
-        
-        Node* result = reverse(newNode->next);
-          while (result && result->data == 0 && result->next != nullptr) {
-        result = result->next;
-    }
-        return result;
+        Node* res = reverse(newNode->next);
+        while(res && res != nullptr && res->data == 0)
+        {
+            res = res->next;
+        }
+        return res;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
