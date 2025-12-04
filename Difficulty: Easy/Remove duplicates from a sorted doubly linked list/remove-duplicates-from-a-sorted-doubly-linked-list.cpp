@@ -19,20 +19,23 @@ class Solution {
 
     Node *removeDuplicates(struct Node *head) {
         // Your code here
-      Node* curr = head;
-      curr = curr->next;
-      Node* prev = head;
-      while(curr)
-      {
-          if(curr->data != prev->data)
-          {
-            prev->next = curr;
-            curr->prev = prev;
-            prev = curr;
-          }
-          curr = curr->next;
-      }
-       prev->next = nullptr;
-      return head;
+        Node* curr = head->next;
+        Node* prev = head;
+        while(curr)
+        {
+            Node* deleteNode = curr->next;
+            if(prev->data != curr->data)
+            {
+                prev->next = curr;
+                curr->prev = prev;
+                prev = curr;
+            }
+            else{
+                delete curr;
+            }
+            curr = deleteNode;
+        }
+        prev->next = nullptr;
+        return head;
     }
 };
