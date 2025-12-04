@@ -14,38 +14,22 @@ public:
 
 class Solution {
   public:
-    Node* findTail(Node* head)
-    {
-        Node* curr = head;
-        while(curr->next != nullptr)
-        {
-            curr = curr->next;
-        }
-        return curr;
-    }
     vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target) {
         // code here
-        vector<pair<int, int>>ans;
-        Node* left = head;
-        Node* right = findTail(head);
-        int sum = 0;
-        while(left!=right &&left != right->next)
+        vector<pair<int, int>>st;
+        map<int,int>mp;
+        Node* curr = head;
+        while(curr)
         {
-            sum = left->data + right->data;
-            if(sum == target)
+            int x = target - curr->data; 
+            if(mp.find(x) != mp.end())
             {
-                ans.push_back({left->data,right->data});
-                left = left->next;
-                right = right->prev;
+                st.push_back({x,curr->data});
             }
-            else if(sum<target)
-            {
-                left = left->next;
-            }
-            else{
-                right = right->prev;
-            }
+            mp[curr->data]++;
+            curr = curr->next;
         }
-        return ans;
+        sort(st.begin(),st.end());
+        return st;
     }
 };
