@@ -1,59 +1,33 @@
-// User function template for C++
-
 class Solution {
   public:
-   int num(char ch)
+  int num(char ch)
         {
-            if(ch=='I')
-            {
-                return 1;
-            }
-            else if(ch=='V')
-            {
-                return 5;
-            }
-            else if(ch=='X')
-            {
-                return 10;
-            }
-            else if(ch=='L')
-            {
-                return 50;
-            }
-            else if(ch=='C')
-            {
-                return 100;
-            }
-            else if(ch=='D')
-            {
-                return 500;
-            }
-            else if(ch=='M'){
-                return 1000;
-            }
+         if(ch == 'I')return 1;
+         else if(ch == 'V')return 5;
+         else if(ch == 'X')return 10;
+         else if(ch == 'L')return 50;
+         else if(ch == 'C')return 100;
+         else if(ch == 'D')return 500;
+         else if(ch == 'M')return 1000;
+         else return -1;
         }
     int romanToDecimal(string &s) {
         // code here
-        int n=s.size();
-        int sum=0;
-        for(int i=0;i<n;i++)
+        int n = s.size();
+        int res=0;
+        for(int i=0;i<n-1;i++)
         {
-            if(i<n-1)
+            int n1 = num(s[i]);
+            int n2 = num(s[i+1]);
+            if(n1<n2)
             {
-            char ch1=s[i];
-            char ch2=s[i+1];
-            if(num(ch1) <num(ch2))
-            {
-                sum-=num(ch1);
+                res-=n1;
             }
             else{
-                sum+=num(ch1);
-            }
-            }
-            else{
-                sum+=num(s[i]);
+                res+=n1;
             }
         }
-        return sum;
+        res+=num(s[n-1]);
+        return res;
     }
 };
