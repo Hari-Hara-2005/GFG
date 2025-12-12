@@ -1,48 +1,45 @@
 class Solution {
   public:
-          int prority(char ch)
-        {
-            if (ch == '+') return 1;
-            else if(ch == '-') return 1;
-            else if(ch == '*') return 2;
-            else if(ch == '/') return 2;
-            else if(ch == '^')return 3;
-            else return -1;
-        }
+     int priority(char ch)
+    {
+        if(ch == '+' || ch == '-')return 1;
+        else if(ch == '*' || ch == '/')return 2;
+        else if(ch == '^')return 3;
+        else return-1;
+    }
     string infixToPostfix(string& s) {
         // code here
-        stack<int>st;
-        int n = s.size();
+        int n = s.size(),i=0;
         string res="";
-        for(int i=0;i<n;i++)
+        stack<char>st;
+        while(i<n)
         {
-            if((s[i] >= 'A' && s[i] <='Z') || (s[i] >= 'a' && s[i] <='z') || (s[i] >= '0' && s[i] <='9'))
+            if(isalnum(s[i]))
             {
                 res+=s[i];
             }
-            else if(s[i] == '(')
+            else if (s[i] == '(')
             {
                 st.push(s[i]);
             }
             else if(s[i] == ')')
             {
-                while(!st.empty() && st.top() != '(')
-                {
-                    res+=st.top();
-                    st.pop();
+                while(!st.empty() && st.top() != '('){
+                res+=st.top();
+                st.pop();
                 }
                 st.pop();
             }
             else{
-                while(!st.empty() && prority(st.top()) >= prority(s[i]) &&   !(s[i] == '^' && st.top() == '^'))
+                while(!st.empty() && priority(st.top()) >= priority(s[i]) && !(st.top() == '^' && s[i] == '^'))
                 {
                     res+=st.top();
                     st.pop();
                 }
                 st.push(s[i]);
             }
+            i++;
         }
-        
         while(!st.empty())
         {
             res+=st.top();
