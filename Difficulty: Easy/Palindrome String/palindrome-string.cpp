@@ -1,15 +1,17 @@
 class Solution {
   public:
-    // Function to check if a string is a palindrome.
     bool isPalindrome(string& s) {
         // code here
-        int n=s.size();
-        for(int i=0;i<n;i++)
+        int n = s.size();
+        int i=0,j=n-1;
+        while(i<j)
         {
-            if(s[i]!=s[n-i-1])
+            if(s[i]!=s[j])
             {
                 return false;
             }
+            i++;
+            j--;
         }
         return true;
     }
