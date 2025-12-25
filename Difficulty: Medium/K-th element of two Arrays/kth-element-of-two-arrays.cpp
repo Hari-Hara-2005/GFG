@@ -4,16 +4,29 @@ class Solution {
         // code here
         int n = a.size();
         int m = b.size();
-        vector<int>ans;
-        for(int i=0;i<n;i++)
+        vector<int>arr;
+        int i=0,j=0;
+        while(i<n && j<m)
         {
-            ans.push_back(a[i]);
+            if(a[i]<b[j])
+            {
+                arr.push_back(a[i++]);
+            }
+            else{
+                arr.push_back(b[j++]);
+            }
         }
-        for(int i=0;i<m;i++)
+        while(i<n)
         {
-            ans.push_back(b[i]);
+            arr.push_back(a[i++]);
         }
-        sort(ans.begin(),ans.end());
-        return(ans[k-1]);
+        while(j<m)
+        {
+            arr.push_back(b[j++]);
+        }
+        for(int i=0;i<arr.size();i++)
+        {
+            if(i==k-1)return arr[i];
+        }
     }
 };
