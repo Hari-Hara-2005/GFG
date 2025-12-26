@@ -3,19 +3,26 @@ class Solution {
   public:
     int rowWithMax1s(vector<vector<int>> &arr) {
         // code here
-        int n = arr.size();
-        int maxi =INT_MIN;
-        int res = 0;
+        int  n = arr.size();
+        int m = arr[0].size();
+        int ans =INT_MIN;
+        int row = -1;
         for(int i=0;i<n;i++)
         {
-            int cnt = 0;
-            for(int j=0;j<arr[i].size();j++)
+            int cnt =0;
+            for(int j=0;j<m;j++)
             {
-                if(arr[i][j]==1)cnt++;
+                if(arr[i][j] == 1)
+                {
+                    cnt++;
+                }
             }
-            if(cnt>maxi)res=i;
-            maxi = max(maxi,cnt);
+            if(cnt > ans)
+            {
+                ans = cnt;
+                row = i;
+            }
         }
-        return (maxi == 0)?-1:res;
+        return row;
     }
 };
