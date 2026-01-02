@@ -2,19 +2,19 @@ class Solution {
   public:
     vector<int> findUnion(vector<int>& a, vector<int>& b) {
         // code here
+        set<int>st;
         vector<int>ans;
-        unordered_map<int,int>mp;
         for(int i=0;i<a.size();i++)
         {
-            mp[a[i]]++;
+            st.insert(a[i]);
         }
         for(int i=0;i<b.size();i++)
         {
-            mp[b[i]]++;
+            st.insert(b[i]);
         }
-        for(auto it:mp)
+        for(auto it:st)
         {
-            ans.push_back(it.first);
+            ans.push_back(it);
         }
         return ans;
     }
