@@ -3,28 +3,29 @@ class Solution {
   public:
     void rearrange(vector<int> &arr) {
         // code here
-        vector<int>pos;
-        vector<int>neg;
+        vector<int>pos,neg;
         int n = arr.size();
-        for(int i=0;i<n;i++){
-            if(arr[i]<0)
-            {
-                neg.push_back(arr[i]);
-            }
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]<0)neg.push_back(arr[i]);
             else{
                 pos.push_back(arr[i]);
             }
         }
-        int i=0,j=0,k=0;
-        while(i<pos.size() && j<neg.size()){
-            arr[k++] = pos[i++];
-            arr[k++] = neg[j++];
+        n=0;
+        int i=0,m=0;
+        while(n<pos.size() && m<neg.size())
+        {
+            arr[i++] = pos[n++];
+            arr[i++] = neg[m++];
         }
-        while(i<pos.size()){
-            arr[k++] = pos[i++];
+        while(n<pos.size())
+        {
+            arr[i++] = pos[n++];
         }
-        while(j<neg.size()){
-            arr[k++] = neg[j++];
+        while(m<neg.size())
+        {
+            arr[i++] = neg[m++];
         }
     }
 };
