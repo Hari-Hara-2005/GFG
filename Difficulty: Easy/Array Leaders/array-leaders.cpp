@@ -6,18 +6,18 @@ class Solution {
     vector<int> leaders(vector<int>& arr) {
         // Code here
         int n = arr.size();
-        int num = arr[n-1];
         vector<int>ans;
-        ans.push_back(num);
+        int num = arr[n-1];
         for(int i=n-2;i>=0;i--)
         {
-            if(arr[i] >= num)
+            if(arr[i]>=num)
             {
                 num = arr[i];
                 ans.push_back(arr[i]);
             }
         }
-        reverse(ans.begin(),ans.end());
+        ans.push_back(arr[n-1]);
+        sort(ans.begin(),ans.end(),greater<int>());
         return ans;
     }
 };
