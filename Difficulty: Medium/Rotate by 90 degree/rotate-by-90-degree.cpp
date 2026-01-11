@@ -1,27 +1,20 @@
-class Solution {
-  public:
-    void rotateMatrix(vector<vector<int>>& mat) {
-        // code here
-        int n = mat.size();
-        int m = mat[0].size();
-        for(int i=0;i<n;i++)
+// User function template for C++
+
+/* matrix : given input matrix, you are require
+ to change it in place without using extra space */
+void rotate(vector<vector<int> >& mat) {
+    // Your code goes here
+    int n = mat.size();
+    int m = mat[0].size();
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i+1;j<m;j++)
         {
-            for(int j=i+1;j<m;j++)
-            {
-                swap(mat[i][j],mat[j][i]);
-            }
-        }
-        for(int i=0;i<n;i++)
-        {
-            
-            int top = 0;
-            int bottom = n-1;
-            while(top<bottom)
-            {
-                swap(mat[top][i],mat[bottom][i]);
-                top++;
-                bottom--;
-            }
+            swap(mat[i][j],mat[j][i]);
         }
     }
-};
+    for(int i=0;i<n;i++)
+    {
+        reverse(mat[i].begin(),mat[i].end());
+    }
+}
