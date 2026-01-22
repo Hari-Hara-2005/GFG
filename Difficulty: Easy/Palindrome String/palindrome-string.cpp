@@ -2,16 +2,10 @@ class Solution {
   public:
     bool isPalindrome(string& s) {
         // code here
-        int n = s.size();
-        int i=0,j=n-1;
-        while(i<j)
+        int  n = s.size();
+        for(int i=0;i<n;i++)
         {
-            if(s[i]!=s[j])
-            {
-                return false;
-            }
-            i++;
-            j--;
+            if(s[i]!=s[n-i-1])return false;
         }
         return true;
     }
