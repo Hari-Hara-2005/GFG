@@ -3,19 +3,16 @@ class Solution {
     vector<int> findDuplicates(vector<int>& arr) {
         // code here
         unordered_map<int,int>mp;
-        vector<int>ans;
-        int n=arr.size();
+        int n = arr.size();
         for(int i=0;i<n;i++)
         {
             mp[arr[i]]++;
         }
-        for(auto num:mp)
+        vector<int>res;
+        for(auto it:mp)
         {
-            if(num.second>1)
-            {
-                ans.push_back(num.first);
-            }
+            if(it.second>=2)res.push_back(it.first);
         }
-        return ans;
+        return res;
     }
 };
