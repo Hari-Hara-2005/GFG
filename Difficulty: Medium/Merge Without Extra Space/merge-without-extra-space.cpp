@@ -4,34 +4,20 @@ class Solution {
         // code here
         int n = a.size();
         int m = b.size();
-        int i=0,j=0;
-        vector<int>ans;
-        while(i<n && j<m)
+        int i=n-1,j=0;
+        while(i>=0 && j<m)
         {
-            if(a[i] <= b[j])
+            if(a[i]>=b[j])
             {
-                ans.push_back(a[i]);
-                i++;
-            }
-            else{
-                ans.push_back(b[j]);
+                swap(a[i],b[j]);
+                i--;
                 j++;
             }
-        }
-        while(i<n)
-        {
-            ans.push_back(a[i++]);
-        }
-        while(j<m)
-        {
-            ans.push_back(b[j++]);
-        }
-        for(int i=0;i<ans.size();i++)
-        {
-            if(i<n)a[i]=ans[i];
             else{
-                b[i-n] = ans[i];
+                break;
             }
         }
+        sort(a.begin(),a.end());
+        sort(b.begin(),b.end());
     }
 };
