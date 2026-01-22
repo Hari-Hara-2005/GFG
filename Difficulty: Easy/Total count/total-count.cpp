@@ -4,19 +4,19 @@ class Solution {
   public:
     int totalCount(int k, vector<int>& arr) {
         // code here
-        int n=arr.size();
-        int ans=0;
+        int n = arr.size();
+        int res = 0;
         for(int i=0;i<n;i++)
         {
-            int rem = arr[i]/k;
+            int num = arr[i]/k;
             if(arr[i]%k!=0)
             {
-                ans+=rem+1;
+                res+=num+1;
             }
             else{
-                ans+=rem;
+                res+=num;
             }
         }
-        return ans;
+        return res;
     }
 };
