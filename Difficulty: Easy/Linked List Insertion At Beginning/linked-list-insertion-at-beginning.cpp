@@ -15,7 +15,7 @@ class Solution {
   public:
     Node *insertAtFront(Node *head, int x) {
         // Code here
-        Node* curr  = head;
+        Node* curr = head;
         Node* newNode = new Node(x);
         newNode->next = curr;
         return newNode;
