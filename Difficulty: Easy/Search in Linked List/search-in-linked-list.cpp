@@ -17,7 +17,10 @@ class Solution {
         Node* curr = head;
         while(curr)
         {
-            if(curr->data == key)return true;
+            if(curr->data == key)
+            {
+                return true;
+            }
             curr = curr->next;
         }
         return false;
