@@ -1,17 +1,46 @@
 class Solution {
   public:
+    int lowerBound(vector<int>arr,int target)
+    {
+        int low =0,high=arr.size()-1;
+        int res = arr.size();
+        while(low <= high)
+        {
+            int mid = low+(high -low)/2;
+            if(arr[mid] >= target)
+            {
+                res = mid;
+                high = mid -1;
+            }
+            else{
+                low = mid+1;
+            }
+        }
+    }
+    
+    int upperBound(vector<int>arr,int target)
+    {
+        int low =0,high=arr.size()-1;
+        int res = arr.size();
+        while(low <= high)
+        {
+            int mid = low+(high -low)/2;
+            if(arr[mid] > target)
+            {
+                res = mid;
+                high = mid -1;
+            }
+            else{
+                low = mid+1;
+            }
+        }
+        return res;
+    }
+    
     int countFreq(vector<int>& arr, int target) {
         // code here
-        int n = arr.size();
-        unordered_map<int,int>mp;
-        for(int i=0;i<n;i++)
-        {
-            mp[arr[i]]++;
-        }
-        for(auto it:mp)
-        {
-            if(it.first == target)return it.second;
-        }
-        return 0;
+        int st = lowerBound(arr,target);
+        int ed = upperBound(arr,target);
+        return ed-st;
     }
 };
