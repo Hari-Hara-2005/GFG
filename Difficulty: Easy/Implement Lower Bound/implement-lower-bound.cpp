@@ -2,22 +2,20 @@ class Solution {
   public:
     int lowerBound(vector<int>& arr, int target) {
         // code here
-        int n = arr.size();
-        int low = 0;
-        int high = n;
-        int ans=n;
+        int low = 0,high = arr.size()-1;
+        int res=-1;
         while(low<=high)
         {
-            int mid = low + (high- low)/2;
-            if(arr[mid]>=target)
+            int mid = low + (high - low)/2;
+            if(arr[mid] < target)
             {
-                ans = mid;
-                high = mid-1;
+                res = mid;
+                low = mid+1;
             }
             else{
-                low = mid +1;
+                high = mid-1;
             }
         }
-        return ans;
+        return res+1;
     }
 };
