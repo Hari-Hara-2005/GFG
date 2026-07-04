@@ -2,26 +2,15 @@ class Solution {
   public:
     int nthRoot(int n, int m) {
         // Code here
-        int low = 1;
-        int high = m;
-        if(m==0)return 0;
-        while(low<=high)
+        if(m == 0)return 0;
+        for(int i=1;i<=m;i++)
         {
-            int mid = low + (high - low)/2;
-            int val = 1;
-            for(int i=0;i<n;i++)
+            int fact =1;
+            for(int j=0;j<n;j++)
             {
-                val*=mid;
-                if(val>m)break;
+                fact*=i;
             }
-            if(val == m)return mid;
-            else if( val < m)
-            {
-                low = mid+1;
-            }
-            else{
-                high = mid-1;
-            }
+            if(fact == m)return i;
         }
         return -1;
     }
